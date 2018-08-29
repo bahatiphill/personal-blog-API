@@ -11,7 +11,7 @@ from rest_framework import generics
 
 
 
-class blogEntriesList(mixins.ListModelMixin,
+class BlogEntriesList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
     queryset = BlogEntries.objects.all()
