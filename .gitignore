@@ -1,2 +1,3 @@
 environ.sh
 *.pyc
+.sqlite3
