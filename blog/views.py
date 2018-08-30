@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from blog.models import BlogEntries
 from blog.serializers import BlogEntriesSerializer
 
@@ -8,9 +7,10 @@ from rest_framework import generics
 
 
 # Create your views here.
+#pagination_class
+#filter_backends
 
-
-
+'''
 class BlogEntriesList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
@@ -42,3 +42,31 @@ class BlogEntryDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+'''
+
+
+
+#List all blog Posts
+class ListEntriesView(generics.ListAPIView):
+    
+    queryset = BlogEntries.objects.all()
+    serializer_class = BlogEntriesSerializer
+
+
+class CreateEntryView(mixins.CreateModelMixin, generics.GenericAPIView):
+                  
+    queryset = BlogEntries.objects.all()
+    serializer_class = BlogEntriesSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+#Blog details
+class EntryDetailsView(generics.RetrieveAPIView):
+
+    queryset = BlogEntries.objects.all()
+    serializer_class = BlogEntriesSerializer
+    
+    lookup_field = 'slug'

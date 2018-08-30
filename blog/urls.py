@@ -1,12 +1,19 @@
 from rest_framework import routers
-from blog.views import BlogEntryDetail, BlogEntriesList
+from blog.views import ListEntriesView, EntryDetailsView, CreateEntryView
 
-from django.conf.urls import  include
+from django.urls import path
 
 router = routers.SimpleRouter()
-router.register(r'blog', BlogEntriesList)
+#router.register(r'', ListEntriesView)
 
 
 urlpatterns = [
-     url(r'^api/', include((router.urls, 'blog_api'))),
+     #url(r'', include((router.urls, 'blog_api'))),
+     path('articles/', ListEntriesView.as_view()),
+     path('article/create/', CreateEntryView.as_view()),
+     path('article/<slug:slug>/', EntryDetailsView.as_view()),
+     
+     #path('article/<slug:slug>/update'),
+     #path('article/<slug:slug>/delete'),
+     
 ]
