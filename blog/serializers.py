@@ -6,9 +6,9 @@ from blog.models import BlogEntries
 
 class BlogEntriesSerializer(serializers.ModelSerializer):
 
-    slug = serializers.PrimaryKeyRelatedField(read_only=True, default='--'
+    slug = serializers.SlugField(read_only=True)
 
     class Meta:
         model = BlogEntries
-        fields = ('id','title','body', 'tags')
-        read_only_fields = ('slug',)
+        fields = ('id','title','body', 'tags', 'slug')
+        #read_only_fields = ('slug',)

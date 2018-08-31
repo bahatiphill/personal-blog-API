@@ -12,7 +12,7 @@ class BlogEntries(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        slug = slugify(self.title)
+        self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
     def __str__(self):
