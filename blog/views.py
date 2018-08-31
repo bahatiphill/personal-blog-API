@@ -50,9 +50,10 @@ class BlogEntryDetail(mixins.RetrieveModelMixin,
 #List all blog Posts
 class ListEntriesView(generics.ListAPIView):
     
-    queryset = BlogEntries.objects.all()
     serializer_class = BlogEntriesSerializer
 
+    def get_queryset(self):
+        return BlogEntries.objects.all().filter(published=True)
 
 class CreateEntryView(mixins.CreateModelMixin, generics.GenericAPIView):
                   
@@ -69,4 +70,21 @@ class EntryDetailsView(generics.RetrieveAPIView):
     queryset = BlogEntries.objects.all()
     serializer_class = BlogEntriesSerializer
     
+    lookup_field = 'slug'
+
+
+#Delete
+class EntryDelete(generics.DestroyAPIView):
+    
+    queryset = BlogEntries.objects.all()
+    serializer_class = BlogEntriesSerializer
+
+    lookup_field = 'slug'
+
+
+class EntryUpdate(generics.UpdateAPIView):
+
+    queryset = BlogEntries.objects.all()
+    serializer_class = BlogEntriesSerializer
+
     lookup_field = 'slug'

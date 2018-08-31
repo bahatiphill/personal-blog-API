@@ -10,5 +10,5 @@ class BlogEntriesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogEntries
-        fields = ('id','title','body', 'tags', 'slug')
+        fields = ('id','title','body', 'tags', 'slug', 'published')
         #read_only_fields = ('slug',)

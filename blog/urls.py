@@ -1,5 +1,5 @@
 from rest_framework import routers
-from blog.views import ListEntriesView, EntryDetailsView, CreateEntryView
+from blog.views import ListEntriesView, EntryDetailsView, CreateEntryView, EntryDelete, EntryUpdate
 
 from django.urls import path
 
@@ -13,7 +13,7 @@ urlpatterns = [
      path('article/create/', CreateEntryView.as_view()),
      path('article/<slug:slug>/', EntryDetailsView.as_view()),
      
-     #path('article/<slug:slug>/update'),
-     #path('article/<slug:slug>/delete'),
+     path('article/<slug:slug>/update', EntryUpdate.as_view()),
+     path('article/<slug:slug>/delete', EntryDelete.as_view()),
      
 ]

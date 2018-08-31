@@ -10,6 +10,7 @@ class BlogEntries(models.Model):
     timestamp = models.DateField(auto_now_add=True)
     tags = models.CharField(max_length=20)
     slug = models.SlugField(unique=True)
+    published = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
