@@ -38,16 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    ### Custom Apps
+    ### Third parties Apps
     'rest_framework',
+    'corsheaders',
+
+    #My apps
     'blog',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    #'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -123,3 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+### ALLOWED HOST TO CORS
+
+FRONT_CLIENT = os.environ.get('front_client')
+CORS_ORIGIN_WHITELIST = (FRONT_CLIENT, )
+CORS_URLS_REGEX = r'^/api/.*$'
